@@ -40,13 +40,15 @@ namespace NLog.Common
     public static partial class InternalLogger
     {
         
-         /// <summary>
+ 
+        /// <summary>
         /// Gets a value indicating whether internal log includes Trace messages.
         /// </summary>
         public static bool IsTraceEnabled
         {
             get { return LogLevel.Trace >= LogLevel; }
         }
+
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Debug messages.
@@ -56,6 +58,7 @@ namespace NLog.Common
             get { return LogLevel.Debug >= LogLevel; }
         }
 
+
         /// <summary>
         /// Gets a value indicating whether internal log includes Info messages.
         /// </summary>
@@ -63,6 +66,7 @@ namespace NLog.Common
         {
             get { return LogLevel.Info >= LogLevel; }
         }
+
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Warn messages.
@@ -72,6 +76,7 @@ namespace NLog.Common
             get { return LogLevel.Warn >= LogLevel; }
         }
 
+
         /// <summary>
         /// Gets a value indicating whether internal log includes Error messages.
         /// </summary>
@@ -80,6 +85,7 @@ namespace NLog.Common
             get { return LogLevel.Error >= LogLevel; }
         }
 
+
         /// <summary>
         /// Gets a value indicating whether internal log includes Fatal messages.
         /// </summary>
@@ -87,6 +93,7 @@ namespace NLog.Common
         {
             get { return LogLevel.Fatal >= LogLevel; }
         }
+
 
 
         /// <summary>
@@ -132,6 +139,7 @@ namespace NLog.Common
             Write(ex, LogLevel.Trace, message, null);
         }	
 
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Debug level.
         /// </summary>
@@ -174,6 +182,7 @@ namespace NLog.Common
         {
             Write(ex, LogLevel.Debug, message, null);
         }	
+
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Info level.
@@ -218,6 +227,7 @@ namespace NLog.Common
             Write(ex, LogLevel.Info, message, null);
         }	
 
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Warn level.
         /// </summary>
@@ -261,6 +271,7 @@ namespace NLog.Common
             Write(ex, LogLevel.Warn, message, null);
         }	
 
+
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Error level.
         /// </summary>
@@ -303,6 +314,7 @@ namespace NLog.Common
         {
             Write(ex, LogLevel.Error, message, null);
         }	
+
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Fatal level.

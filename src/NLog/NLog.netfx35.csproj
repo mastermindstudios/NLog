@@ -15,7 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -27,8 +27,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules></CodeAnalysisRules>
-    <CodeAnalysisRules></CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -45,6 +47,17 @@
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unity|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Unity\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET3_5;CLIENT_SKU;__ANDROID__;__IOS__;SILVERLIGHT;WINDOWS_PHONE;UNITY</DefineConstants>
+    <DocumentationFile>..\..\build\bin\Debug\.NET Framework 3.5\NLog.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -436,5 +449,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
 </Project>

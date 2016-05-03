@@ -51,7 +51,7 @@ namespace NLog.Config
     using NLog.LayoutRenderers;
     using NLog.Time;
     using System.Collections.ObjectModel;
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY
 // ReSharper disable once RedundantUsingDirective
     using System.Windows;
 #endif
@@ -140,7 +140,7 @@ namespace NLog.Config
             if (!string.IsNullOrEmpty(fileName))
             {
                 fileName = fileName.Trim();
-#if __ANDROID__
+#if __ANDROID__ && !UNITY
                 //suport loading config from special assets folder in nlog.config
                 if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
                 {
@@ -994,7 +994,7 @@ namespace NLog.Config
                     newFileName = Path.Combine(baseDirectory, newFileName);
                 }
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY
                 newFileName = newFileName.Replace("\\", "/");
                 if (Application.GetResourceStream(new Uri(newFileName, UriKind.Relative)) != null)
 #else

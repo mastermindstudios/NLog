@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Reflection;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -39,7 +41,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY
 	using System.Windows;
 #if SILVERLIGHT5
 	using System.Reflection;
@@ -61,7 +63,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY
 			var assembly = Application.Current.GetType().Assembly;
 #else
             var assembly = Assembly.GetEntryAssembly();

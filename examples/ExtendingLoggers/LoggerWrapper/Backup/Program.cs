@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,31 +31,55 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if SILVERLIGHT && !UNITY
+using System;
+using System.Text;
+using NLog;
 
-namespace System.ComponentModel
+namespace LoggerWrapper
 {
-    using System;
-
     /// <summary>
-    /// Define Localizable attribute for platforms that don't have it.
+    /// Provides methods to write messages with event IDs - useful for the Event Log target.
+    /// Wraps a Logger instance.
     /// </summary>
-    internal class LocalizableAttribute : Attribute
+    class MyLogger
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LocalizableAttribute"/> class.
-        /// </summary>
-        /// <param name="isLocalizable">Determines whether the target is localizable.</param>
-        public LocalizableAttribute(bool isLocalizable)
+        private Logger _logger;
+
+        public MyLogger(string name)
         {
-            IsLocalizable = isLocalizable;
+            _logger = LogManager.GetLogger(name);
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the target is localizable.
-        /// </summary>
-        public bool IsLocalizable { get; set; }
+        public void WriteMessage(string eventID, string message)
+        {
+            ///
+            /// create log event from the passed message
+            /// 
+            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, _logger.Name, message);
+
+            //
+            // set event-specific context parameter
+            // this context parameter can be retrieved using ${event-context:EventID}
+            //
+            logEvent.Context["EventID"] = eventID;
+
+            // 
+            // Call the Log() method. It is important to pass typeof(MyLogger) as the
+            // first parameter. If you don't, ${callsite} and other callstack-related 
+            // layout renderers will not work properly.
+            //
+
+            _logger.Log(typeof(MyLogger), logEvent);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyLogger l = new MyLogger("uuu");
+
+            l.WriteMessage("1234", "message");
+        }
     }
 }
-
-#endif

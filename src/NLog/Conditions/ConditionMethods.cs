@@ -67,6 +67,8 @@ namespace NLog.Conditions
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
 #if SILVERLIGHT
         public static bool Equals2( string firstValue, string secondValue, [Optional] object ignoreCase)
+#elif UNITY
+        public static bool Equals2( string firstValue, string secondValue, bool ignoreCase = false)
 #else
         public static bool Equals2( string firstValue, string secondValue, [Optional, DefaultParameterValue(false)] bool ignoreCase)
 #endif
@@ -92,6 +94,8 @@ namespace NLog.Conditions
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
 #if SILVERLIGHT
         public static bool Contains( string haystack, string needle, [Optional] object ignoreCase)
+#elif UNITY
+        public static bool Contains(string haystack, string needle, bool ignoreCase = false)
 #else
         public static bool Contains( string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
 #endif
@@ -117,6 +121,8 @@ namespace NLog.Conditions
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
 #if SILVERLIGHT
         public static bool StartsWith( string haystack, string needle, [Optional] object ignoreCase)
+#elif UNITY
+        public static bool StartsWith(string haystack, string needle, bool ignoreCase = false)
 #else
         public static bool StartsWith( string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
 #endif
@@ -142,6 +148,8 @@ namespace NLog.Conditions
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
 #if SILVERLIGHT
         public static bool EndsWith( string haystack, string needle, [Optional] object ignoreCase)
+#elif UNITY
+        public static bool EndsWith(string haystack, string needle, bool ignoreCase = false)
 #else
         public static bool EndsWith( string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
 #endif

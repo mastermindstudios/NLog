@@ -173,7 +173,7 @@ namespace NLog
                     {
                         foreach (string configFile in GetCandidateConfigFileNames())
                         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY
                             Uri configFileUri = new Uri(configFile, UriKind.Relative);
                             if (Application.GetResourceStream(configFileUri) != null)
                             {
@@ -190,7 +190,7 @@ namespace NLog
                         }
                     }
 
-#if __ANDROID__
+#if __ANDROID__ && !UNITY
                     if (this.config == null)
                     {
                         //try nlog.config in assets folder
